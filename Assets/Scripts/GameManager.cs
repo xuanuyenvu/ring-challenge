@@ -1,11 +1,13 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
     public GameObject ringPrefab;
     private Ring currentRing = null;
     public bool isCoroutineRunning = false;
+    public UnityEvent onRingCounterUpdate;
 
     void Start()
     {
@@ -32,8 +34,8 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f); 
 
         currentRing = null;
+        onRingCounterUpdate.Invoke();
         CreateNewRing();
         isCoroutineRunning = false;
     }
-    
 }
