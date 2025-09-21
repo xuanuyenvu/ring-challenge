@@ -3,27 +3,29 @@ using UnityEngine.UI;
 
 public class RingCounter : MonoBehaviour
 {
-    public int throwLimit = 5;
+    public int throwCount = 0;
     public Slider visuals;
-    public GameObject gameOverScreen;
+    public GameObject resultScreen;
 
     void Start()
     {
-        visuals.maxValue = throwLimit;
-        visuals.value = throwLimit;
+        visuals.maxValue = 5;
+        visuals.value = throwCount;
+
+        resultScreen.SetActive(false);
     }
 
-    public void ThorwRing()
+    public void ThrowRing()
     {
-        throwLimit -= 1;
-        visuals.value = throwLimit;
+        throwCount += 1;
+        visuals.value = throwCount;
     }
 
     void Update()
     {
-        if (throwLimit == 0)
+        if (throwCount == 5)
         {
-            gameOverScreen.SetActive(true);
+            resultScreen.SetActive(true);
         }
     }
 }
